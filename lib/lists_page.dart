@@ -19,7 +19,7 @@ class _ListsPageState extends State<ListsPage> {
       ),
       body: new Row(
         children: <Widget>[
-          
+
         ],
       ),
     );

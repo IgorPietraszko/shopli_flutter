@@ -1,0 +1,1 @@
+enum AppView {intro, shoppingLists}
