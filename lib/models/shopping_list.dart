@@ -1,6 +1,13 @@
 import './table_data.dart';
 
-class ShoppingList extends TableData {
-  String Name;
-  ShoppingList(String this.Name);
+class ShoppingList implements TableData {
+  // TableData
+  String createdAt;
+  bool deleted;
+  String id;
+  DateTime updatedAt;
+
+  // ShoppingList
+  String name;
+  ShoppingList(this.name);
 }

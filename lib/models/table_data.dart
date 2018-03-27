@@ -1,6 +1,6 @@
-abstract class TableData {
+class TableData {
   String createdAt;
-  bool Deleted;
-  String Id;
+  bool deleted;
+  String id;
   DateTime updatedAt;
 }
