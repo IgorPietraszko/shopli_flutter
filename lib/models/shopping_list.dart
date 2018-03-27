@@ -1,13 +1,6 @@
 import './table_data.dart';
 
-class ShoppingList implements TableData {
-  // TableData
-  String createdAt;
-  bool deleted;
-  String id;
-  DateTime updatedAt;
-
-  // ShoppingList
+class ShoppingList extends TableData {
   String name;
-  ShoppingList(this.name);
+  ShoppingList(this.name, {String createdAt, bool deleted, String id,  DateTime updatedAt}) : super(createdAt, deleted, id, updatedAt);
 }

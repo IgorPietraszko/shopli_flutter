@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../models/shopping_list.dart';
-import 'package:shopli_flutter/interfaces/repositories/abstract_shopping_list_repository.dart';
+import '../interfaces/repositories/abstract_shopping_list_repository.dart';
 
 class ShoppingListRepository implements AShoppingListRepository{
 
