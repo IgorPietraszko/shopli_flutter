@@ -5,6 +5,7 @@ import '../models/app_state.dart';
 import '../models/shopping_list.dart';
 import '../view_models/shopping_list_view_model.dart';
 import '../widgets/shopping_list_dialog.dart';
+import '../widgets/shopping_list_item.dart';
 
 
 class ListsPage extends StatefulWidget {

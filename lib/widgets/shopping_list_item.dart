@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/shopping_list.dart';
 
-class WeightListItem extends StatelessWidget {
+class ShoppingListItem extends StatelessWidget {
   final ShoppingList shoppingList;
 
-  WeightListItem(this.shoppingList);
+  ShoppingListItem(this.shoppingList);
 
   @override
   Widget build(BuildContext context) {}
