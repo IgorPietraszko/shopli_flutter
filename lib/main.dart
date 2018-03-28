@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-
-import './pages/lists_page.dart';
+import './widgets/lists_page.dart';
 import './dependency_injection/injector.dart';
 import './models/app_state.dart';
 import './models/app_state_reducer.dart';

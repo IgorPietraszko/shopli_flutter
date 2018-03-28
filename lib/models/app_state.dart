@@ -20,11 +20,6 @@ class AppState {
     );
   }
 
-  AppState stateReducer(AppState state, action) {
-    // TODO: add actions
-    return state;
-  }
-
   @override
   int get hashCode => isLoading.hashCode ^ shoppingLists.hashCode ^ activeView.hashCode;
 
