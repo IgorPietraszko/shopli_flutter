@@ -6,6 +6,7 @@ import './widgets/lists_page.dart';
 import './dependency_injection/injector.dart';
 import './models/app_state.dart';
 import './models/app_state_reducer.dart';
+import './routes.dart';
 
 void main() {
   Injector.configure(Flavor.MOCK);
@@ -24,15 +25,27 @@ class ShopLiApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'ShopLi',
-      theme: new ThemeData(
-        primarySwatch: Colors.orange,
+    return new StoreProvider<AppState>(
+      store: store,
+      child: new MaterialApp(
+        title: 'ShopLi',
+        theme: new ThemeData(
+          primarySwatch: Colors.orange,
+        ),
+        routes: {
+          ShopLiRoutes.home: (context) {
+            return new StoreBuilder<AppState>(
+              onInit: (store) => store.dispatch(new LoadShoppingListsAction()),
+              builder: (conext, store) {
+                return new ListsPage(title: 'ShopLi'); 
+              },
+            );
+          },
+          ShopLiRoutes.addList: (context) {
+            return new AddShoppingList();
+          }
+        },
       ),
-      home: new StoreProvider(
-        store: store,
-        child: new ListsPage(title: 'ShopLi'),
-      ),      
     );
   }
 }

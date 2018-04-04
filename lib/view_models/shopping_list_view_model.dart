@@ -11,5 +11,6 @@ class ShoppingListViewModel {
   ShoppingListViewModel({this.shoppingLists});
 
   // functions
-  final Function() editEntryCallback;
+  final Function() editShoppingListCallback;
+  final Function() addShoppingListCallback;
 }

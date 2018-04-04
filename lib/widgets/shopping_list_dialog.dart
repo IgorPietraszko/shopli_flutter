@@ -6,6 +6,7 @@ class ShoppingListDialog extends StatefulWidget {
   final ShoppingList shoppingListToEdit;
 
   ShoppingListDialog.edit(this.shoppingListToEdit);
+  ShoppingListDialog.add() : this.shoppingListToEdit = null;
 
   @override
   ShoppingListDialogState createState() {

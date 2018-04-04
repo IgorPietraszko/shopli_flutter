@@ -22,24 +22,36 @@ class _ListsPageState extends State<ListsPage> {
   ScrollController _listViewScrollController = new ScrollController();
 
   // function to open Shopping List Edit Dialog
-  _openEditShoppingListDialog(ShoppingList shoppingList,
-      Function(ShoppingList) onSubmittedCallback) async {
-    Navigator
-        .of(context)
-        .push(
+  _openEditShoppingListDialog(ShoppingList shoppingList, Function(ShoppingList) onSubmittedCallback) async {
+    
+    ShoppingList newEntry = await Navigator.of(context).push(
       new MaterialPageRoute<ShoppingList>(
         builder: (BuildContext context) {
           return new ShoppingListDialog.edit(shoppingList);
         },
         fullscreenDialog: true,
       ),
-    )
-        .then((ShoppingList newEntry) {
-      if (newEntry != null) {
+    );
+    
+    if (newEntry != null) {
         newEntry.id = shoppingList.id;
         onSubmittedCallback(newEntry);
       }
-    });
+  }
+
+  // function to open Shopping List Edit Dialog
+  _openAddShoppingListDialog(Function(ShoppingList) onSubmittedCallback) async {
+    
+    ShoppingList newEntry = await Navigator.of(context).push(
+      new MaterialPageRoute<ShoppingList>(
+        builder: (BuildContext context) {
+          return new ShoppingListDialog.add();
+        },
+        fullscreenDialog: true,
+      ),
+    );
+    
+    onSubmittedCallback(newEntry);
   }
 
   @override
@@ -60,13 +72,13 @@ class _ListsPageState extends State<ListsPage> {
             itemCount: viewModel.shoppingLists.length,
             itemBuilder: (buildContext,index) {
               return new InkWell(
-                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback()),
+                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editShoppingListCallback()),
                 child: new ShoppingListItem(viewModel.shoppingLists[index])
               );
             },
           ),
           floatingActionButton: new FloatingActionButton(
-            onPressed: () => _openAddEntryDialog(),
+            onPressed: () => _openAddShoppingListDialog(viewModel.addShoppingListCallback()),
             tooltip: 'Add new Shopping List',
             child: new Icon(Icons.add),
           ),
