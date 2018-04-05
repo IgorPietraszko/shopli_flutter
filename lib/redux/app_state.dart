@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import './shopping_list.dart';
+import '../models/shopping_list.dart';
 import './app_view.dart';
 
 @immutable

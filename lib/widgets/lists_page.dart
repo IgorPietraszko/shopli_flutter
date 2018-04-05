@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import '../models/app_state.dart';
+import '../redux/app_state.dart';
+import '../redux/actions.dart';
 import '../models/shopping_list.dart';
 import '../view_models/shopping_list_view_model.dart';
 import '../widgets/shopping_list_dialog.dart';
@@ -22,31 +23,48 @@ class _ListsPageState extends State<ListsPage> {
   ScrollController _listViewScrollController = new ScrollController();
 
   // function to open Shopping List Edit Dialog
-  _openEditShoppingListDialog(ShoppingList shoppingList,
-      Function(ShoppingList) onSubmittedCallback) async {
-    Navigator
-        .of(context)
-        .push(
+  _openEditShoppingListDialog(ShoppingList shoppingList, Function(ShoppingList) onEdittedCallback) async {
+
+    ShoppingList newEntry = await Navigator.of(context).push(
       new MaterialPageRoute<ShoppingList>(
         builder: (BuildContext context) {
           return new ShoppingListDialog.edit(shoppingList);
         },
         fullscreenDialog: true,
       ),
-    )
-        .then((ShoppingList newEntry) {
-      if (newEntry != null) {
-        newEntry.id = shoppingList.id;
-        onSubmittedCallback(newEntry);
-      }
-    });
+    );
+
+    if (newEntry != null) {
+      newEntry.id = shoppingList.id;
+      onEdittedCallback(newEntry);
+    }
+  }
+
+  // function to open Shopping List Add Button
+  _openAddEntryDialog(List<ShoppingList> shoppingLists, Function(ShoppingList) onAddedCallback) async {
+    
+    ShoppingList entry = await Navigator.of(context).push(
+      new MaterialPageRoute<ShoppingList>(
+        builder: (BuildContext context) {
+          return new ShoppingListDialog.add();
+        },
+        fullscreenDialog: false)
+    );
+
+    if (entry != null) {
+      onAddedCallback(entry);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<AppState, ShoppingListViewModel> (
       converter: (store) {
-        return new ShoppingListViewModel(shoppingLists: store.state.shoppingLists);
+        return new ShoppingListViewModel(
+          shoppingLists: store.state.shoppingLists,
+          addEntryCallback: ((list) => store.dispatch(new AddShoppingListAction(list))),
+          editEntryCallback: ((list) => store.dispatch(new EditShoppingListAction(list))),
+        );
       },
 
       builder: (context, viewModel) {
@@ -60,13 +78,13 @@ class _ListsPageState extends State<ListsPage> {
             itemCount: viewModel.shoppingLists.length,
             itemBuilder: (buildContext,index) {
               return new InkWell(
-                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback()),
+                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
                 child: new ShoppingListItem(viewModel.shoppingLists[index])
               );
             },
           ),
           floatingActionButton: new FloatingActionButton(
-            onPressed: () => _openAddEntryDialog(),
+            onPressed: () => _openAddEntryDialog(viewModel.shoppingLists, viewModel.addEntryCallback),
             tooltip: 'Add new Shopping List',
             child: new Icon(Icons.add),
           ),

@@ -8,8 +8,13 @@ class ShoppingListViewModel {
   final List<ShoppingList> shoppingLists;
 
   // ctor
-  ShoppingListViewModel({this.shoppingLists});
+  ShoppingListViewModel({
+    this.shoppingLists,
+    this.editEntryCallback,
+    this.addEntryCallback
+  });
 
   // functions
-  final Function() editEntryCallback;
+  final Function(ShoppingList) editEntryCallback;
+  final Function(ShoppingList) addEntryCallback;
 }
