@@ -25,54 +25,23 @@ class _ListsPageState extends State<ListsPage> {
   // function to open Shopping List Edit Dialog
   _openEditShoppingListDialog(ShoppingList shoppingList, Function(ShoppingList) onEdittedCallback) async {
 
-    ShoppingList newEntry = await Navigator.of(context).push(
-      new MaterialPageRoute<ShoppingList>(
-        builder: (BuildContext context) {
-          return new ShoppingListDialog.edit(shoppingList);
-        },
-        fullscreenDialog: true,
-      ),
+    ShoppingList list = await showDialog(
+      context: context,
+      child: new ShoppingListDialog.edit(shoppingList)
     );
 
-    if (newEntry != null) {
-      newEntry.id = shoppingList.id;
-      onEdittedCallback(newEntry);
+    if (list != null) {
+      list.id = shoppingList.id;
+      onEdittedCallback(list);
     }
   }
 
   // function to open Shopping List Add Button
   _openAddEntryDialog(List<ShoppingList> shoppingLists, Function(ShoppingList) onAddedCallback) async {
-    String _shoppingListName;
-    TextEditingController _textController = new TextEditingController();
 
     ShoppingList list = await showDialog(
       context: context,
-      child: new AlertDialog(
-        title: new Text("Add ShoppingList"),
-        content: new SingleChildScrollView(
-          child: new ListBody(
-            children: <Widget>[
-              new TextField(
-                decoration: new InputDecoration(
-                  hintText: "Shopping List Name",
-                ),
-                controller: _textController,
-                onChanged: (value) => _shoppingListName = value,
-              ),        
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          new FlatButton(
-            child: new Text("Cancel"),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          new FlatButton(
-            child: new Text("OK"),
-            onPressed: () => Navigator.of(context).pop(new ShoppingList(_shoppingListName)),
-          )
-        ],
-      ),
+      child: new ShoppingListDialog.add(),
     );
 
     if (list != null) {
