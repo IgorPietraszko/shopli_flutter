@@ -15,11 +15,6 @@ class ShoppingListViewModel {
   });
 
   // functions
-<<<<<<< HEAD
   final Function(ShoppingList) editEntryCallback;
   final Function(ShoppingList) addEntryCallback;
-=======
-  final Function() editShoppingListCallback;
-  final Function() addShoppingListCallback;
->>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
 }
