@@ -1,0 +1,4 @@
+Parts of the sample on redux, dialog flow, etc. loosely based on: // folowing loosely this post: https://github.com/MSzalek-Mobile/weight_tracker/blob/v0.4.1/lib/home_page.dart
+Inspiration also taked from Redux arch samples: https://github.com/brianegan/flutter_architecture_samples/tree/master/example/redux
+
+Simple mock based on: https://medium.com/@develodroid/flutter-iv-mvp-architecture-e4a979d9f47e

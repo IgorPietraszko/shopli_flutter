@@ -42,17 +42,41 @@ class _ListsPageState extends State<ListsPage> {
 
   // function to open Shopping List Add Button
   _openAddEntryDialog(List<ShoppingList> shoppingLists, Function(ShoppingList) onAddedCallback) async {
-    
-    ShoppingList entry = await Navigator.of(context).push(
-      new MaterialPageRoute<ShoppingList>(
-        builder: (BuildContext context) {
-          return new ShoppingListDialog.add();
-        },
-        fullscreenDialog: false)
+    String _shoppingListName;
+    TextEditingController _textController = new TextEditingController();
+
+    ShoppingList list = await showDialog(
+      context: context,
+      child: new AlertDialog(
+        title: new Text("Add ShoppingList"),
+        content: new SingleChildScrollView(
+          child: new ListBody(
+            children: <Widget>[
+              new TextField(
+                decoration: new InputDecoration(
+                  hintText: "Shopping List Name",
+                ),
+                controller: _textController,
+                onChanged: (value) => _shoppingListName = value,
+              ),        
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text("Cancel"),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          new FlatButton(
+            child: new Text("OK"),
+            onPressed: () => Navigator.of(context).pop(new ShoppingList(_shoppingListName)),
+          )
+        ],
+      ),
     );
 
-    if (entry != null) {
-      onAddedCallback(entry);
+    if (list != null) {
+      onAddedCallback(list);
     }
   }
 

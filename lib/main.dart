@@ -7,10 +7,8 @@ import './dependency_injection/injector.dart';
 import './redux/app_state.dart';
 import './redux/app_state_reducer.dart';
 
-// folowing loosely this post: https://github.com/MSzalek-Mobile/weight_tracker/blob/v0.4.1/lib/home_page.dart
-
 void main() {
-  // simple mock according to: https://medium.com/@develodroid/flutter-iv-mvp-architecture-e4a979d9f47e
+  // simple mock 
   Injector.configure(Flavor.MOCK);
   runApp(new ShopLiApp());
 }
