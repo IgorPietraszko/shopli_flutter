@@ -23,8 +23,13 @@ class _ListsPageState extends State<ListsPage> {
   ScrollController _listViewScrollController = new ScrollController();
 
   // function to open Shopping List Edit Dialog
+<<<<<<< HEAD
   _openEditShoppingListDialog(ShoppingList shoppingList, Function(ShoppingList) onEdittedCallback) async {
 
+=======
+  _openEditShoppingListDialog(ShoppingList shoppingList, Function(ShoppingList) onSubmittedCallback) async {
+    
+>>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
     ShoppingList newEntry = await Navigator.of(context).push(
       new MaterialPageRoute<ShoppingList>(
         builder: (BuildContext context) {
@@ -33,6 +38,7 @@ class _ListsPageState extends State<ListsPage> {
         fullscreenDialog: true,
       ),
     );
+<<<<<<< HEAD
 
     if (newEntry != null) {
       newEntry.id = shoppingList.id;
@@ -44,16 +50,37 @@ class _ListsPageState extends State<ListsPage> {
   _openAddEntryDialog(List<ShoppingList> shoppingLists, Function(ShoppingList) onAddedCallback) async {
     
     ShoppingList entry = await Navigator.of(context).push(
+=======
+    
+    if (newEntry != null) {
+        newEntry.id = shoppingList.id;
+        onSubmittedCallback(newEntry);
+      }
+  }
+
+  // function to open Shopping List Edit Dialog
+  _openAddShoppingListDialog(Function(ShoppingList) onSubmittedCallback) async {
+    
+    ShoppingList newEntry = await Navigator.of(context).push(
+>>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
       new MaterialPageRoute<ShoppingList>(
         builder: (BuildContext context) {
           return new ShoppingListDialog.add();
         },
+<<<<<<< HEAD
         fullscreenDialog: false)
     );
 
     if (entry != null) {
       onAddedCallback(entry);
     }
+=======
+        fullscreenDialog: true,
+      ),
+    );
+    
+    onSubmittedCallback(newEntry);
+>>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
   }
 
   @override
@@ -78,13 +105,21 @@ class _ListsPageState extends State<ListsPage> {
             itemCount: viewModel.shoppingLists.length,
             itemBuilder: (buildContext,index) {
               return new InkWell(
+<<<<<<< HEAD
                 onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
+=======
+                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editShoppingListCallback()),
+>>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
                 child: new ShoppingListItem(viewModel.shoppingLists[index])
               );
             },
           ),
           floatingActionButton: new FloatingActionButton(
+<<<<<<< HEAD
             onPressed: () => _openAddEntryDialog(viewModel.shoppingLists, viewModel.addEntryCallback),
+=======
+            onPressed: () => _openAddShoppingListDialog(viewModel.addShoppingListCallback()),
+>>>>>>> 28ac59572bb687c185ff7d83fdf163314dccddae
             tooltip: 'Add new Shopping List',
             child: new Icon(Icons.add),
           ),
