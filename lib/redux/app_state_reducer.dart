@@ -12,17 +12,12 @@ AppState stateReducer(AppState state, action) {
       ..add(action.shoppingList);
     newState = new AppState(shoppingLists: lists);
   } else if (action is EditShoppingListAction) {
-    var oldList = state.shoppingLists.where((list) => list.id == action.shoppingList.id);
-    
+    var oldShoppingList = state.shoppingLists.singleWhere((list) => list.id == action.shoppingList.id);
+     List<ShoppingList> lists = new List<ShoppingList>()
+      ..addAll(state.shoppingLists)
+      ..[state.shoppingLists.indexOf(oldShoppingList)] = action.shoppingList;
+    newState = new AppState(shoppingLists: lists);
   }
   // TODO: add actions
   return newState;
-}
-
-AppState _onShoppingListAdded(AppState state, action) {
-  return state.copyWith(
-    shoppingLists: <ShoppingList>[]
-      ..addAll(state.shoppingLists)
-      ..add((action as AddShoppingListAction).shoppingList)
-  );
 }

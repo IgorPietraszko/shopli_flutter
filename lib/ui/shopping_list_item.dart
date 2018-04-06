@@ -9,32 +9,39 @@ class ShoppingListItem extends StatelessWidget {
 
  @override
   Widget build(BuildContext context) {
-    return new Padding(
-      padding: new EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-      child: new Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          new Expanded(
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                new Column(
-                  children: [
-                    new Text(
-                      shoppingList.name,
-                      textScaleFactor: 0.9,
-                      textAlign: TextAlign.left,
+    return new Column(
+      children: <Widget>[
+        new Padding(
+          padding: new EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          child: new Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              new Expanded(
+                child: new Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Column(
+                      children: [
+                        new Text(
+                          shoppingList.name,
+                          textScaleFactor: 1.5,
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                     ),
                   ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        new Divider(
+          height: 1.0,
+        )
+      ],
     );
   }
 

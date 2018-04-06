@@ -71,7 +71,7 @@ class _ListsPageState extends State<ListsPage> {
             itemCount: viewModel.shoppingLists.length,
             itemBuilder: (buildContext,index) {
               return new InkWell(
-                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
+                onLongPress: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
                 child: new ShoppingListItem(viewModel.shoppingLists[index])
               );
             },
