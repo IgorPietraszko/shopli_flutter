@@ -1,39 +1,32 @@
 import 'package:meta/meta.dart';
 import '../models/shopping_list.dart';
-import './app_view.dart';
 
 @immutable
 class AppState {
-  final bool isLoading;
   final List<ShoppingList> shoppingLists;
-  final AppView activeView;
 
-  AppState({this.isLoading = false, this.shoppingLists = const [], this.activeView = AppView.shoppingLists});
+  AppState({this.shoppingLists = const []});
 
-  factory AppState.loading() => new AppState(isLoading: true);
+  //factory AppState.loading() => new AppState(isLoading: true);
 
-  AppState copyWith({bool isLoading, List<ShoppingList> shoppingLists, AppView activeView}) {
+  AppState copyWith({List<ShoppingList> shoppingLists}) {
     return new AppState(
-      isLoading: isLoading ?? this.isLoading,
       shoppingLists: shoppingLists ?? this.shoppingLists,
-      activeView: activeView ?? this.activeView
     );
   }
 
   @override
-  int get hashCode => isLoading.hashCode ^ shoppingLists.hashCode ^ activeView.hashCode;
+  int get hashCode => shoppingLists.hashCode;
 
   @override
   bool operator == (Object other) => 
     identical(this, other) ||
       other is AppState &&
       runtimeType == other.runtimeType &&
-      isLoading == other.isLoading &&
-      shoppingLists == other.shoppingLists &&
-      activeView == other.activeView;
+      shoppingLists == other.shoppingLists;
 
   @override
   String toString() {
-    return 'AppState{isLoading: $isLoading, shoppingLists: $shoppingLists, activeView: $activeView}';
+    return 'AppState{shoppingLists: $shoppingLists}';
   }
 }
