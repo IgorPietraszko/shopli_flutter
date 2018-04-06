@@ -11,6 +11,9 @@ AppState stateReducer(AppState state, action) {
       ..addAll(state.shoppingLists)
       ..add(action.shoppingList);
     newState = new AppState(shoppingLists: lists);
+  } else if (action is EditShoppingListAction) {
+    var oldList = state.shoppingLists.where((list) => list.id == action.shoppingList.id);
+    
   }
   // TODO: add actions
   return newState;
