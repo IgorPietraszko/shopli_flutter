@@ -5,8 +5,8 @@ import '../redux/app_state.dart';
 import '../redux/actions.dart';
 import '../models/shopping_list.dart';
 import '../view_models/shopping_list_view_model.dart';
-import '../widgets/shopping_list_dialog.dart';
-import '../widgets/shopping_list_item.dart';
+import '../ui/shopping_list_dialog.dart';
+import '../ui/shopping_list_item.dart';
 
 
 class ListsPage extends StatefulWidget {

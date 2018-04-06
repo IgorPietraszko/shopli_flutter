@@ -7,14 +7,13 @@ import '../models/shopping_list.dart';
 class ShoppingListDialog extends AlertDialog {
   final ShoppingList _shoppingListToEdit;
   String _shoppingListName;
-  final TextEditingController _textController = new TextEditingController();
+  TextEditingController _textController;
 
   ShoppingListDialog.edit(this._shoppingListToEdit) {
-    TextEditingController _textController = new TextEditingController(
-      text: this._shoppingListToEdit.name);
+    _textController = new TextEditingController(text: this._shoppingListToEdit.name);
   }
   ShoppingListDialog.add() : _shoppingListToEdit = null {
-    TextEditingController _textController = new TextEditingController();
+    _textController = new TextEditingController();
   }
 
   @override

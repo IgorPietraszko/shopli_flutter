@@ -7,10 +7,13 @@ AppState stateReducer(AppState state, action) {
   AppState newState = state;
 
   if (action is AddShoppingListAction) {
-    newState = _onShoppingListAdded(state, action);
+    List<ShoppingList> lists = new List<ShoppingList>()
+      ..addAll(state.shoppingLists)
+      ..add(action.shoppingList);
+    newState = new AppState(shoppingLists: lists);
   }
   // TODO: add actions
-  return state;
+  return newState;
 }
 
 AppState _onShoppingListAdded(AppState state, action) {
