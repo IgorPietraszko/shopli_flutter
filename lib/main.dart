@@ -7,6 +7,7 @@ import './dependency_injection/injector.dart';
 import './redux/app_state.dart';
 import './redux/app_state_reducer.dart';
 
+// comment
 void main() {
   // simple mock 
   Injector.configure(Flavor.MOCK);
