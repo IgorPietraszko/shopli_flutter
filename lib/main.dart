@@ -15,7 +15,10 @@ void main() {
 
 class ShopLiApp extends StatelessWidget {
 
-  final store = new Store<AppState>(stateReducer, initialState: new AppState());
+  final store = new Store<AppState>(
+    stateReducer, 
+    initialState: new AppState()
+  );
 
   ShopLiApp();
 

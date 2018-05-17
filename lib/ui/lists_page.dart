@@ -27,7 +27,7 @@ class _ListsPageState extends State<ListsPage> {
 
     ShoppingList list = await showDialog(
       context: context,
-      child: new ShoppingListDialog.edit(shoppingList)
+      builder: (BuildContext context) => new ShoppingListDialog.edit(shoppingList)
     );
 
     if (list != null) {
@@ -41,7 +41,7 @@ class _ListsPageState extends State<ListsPage> {
 
     ShoppingList list = await showDialog(
       context: context,
-      child: new ShoppingListDialog.add(),
+      builder: (BuildContext context) => new ShoppingListDialog.add(),
     );
 
     if (list != null) {
