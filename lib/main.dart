@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-import './ui/lists_page.dart';
+import './ui/shopping_lists_page.dart';
 import './dependency_injection/injector.dart';
 import './redux/app_state.dart';
 import './redux/app_state_reducer.dart';
 
+// comment
 void main() {
   // simple mock 
   Injector.configure(Flavor.MOCK);

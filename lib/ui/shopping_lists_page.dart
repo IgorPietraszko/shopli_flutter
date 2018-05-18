@@ -27,7 +27,7 @@ class _ListsPageState extends State<ListsPage> {
 
     ShoppingList list = await showDialog(
       context: context,
-      builder: (BuildContext context) => new ShoppingListDialog.edit(shoppingList)
+      child: new ShoppingListDialog.edit(shoppingList)
     );
 
     if (list != null) {
@@ -41,7 +41,7 @@ class _ListsPageState extends State<ListsPage> {
 
     ShoppingList list = await showDialog(
       context: context,
-      builder: (BuildContext context) => new ShoppingListDialog.add(),
+      child: new ShoppingListDialog.add(),
     );
 
     if (list != null) {
@@ -71,7 +71,7 @@ class _ListsPageState extends State<ListsPage> {
             itemCount: viewModel.shoppingLists.length,
             itemBuilder: (buildContext,index) {
               return new InkWell(
-                onTap: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
+                onLongPress: () => _openEditShoppingListDialog(viewModel.shoppingLists[index], viewModel.editEntryCallback),
                 child: new ShoppingListItem(viewModel.shoppingLists[index])
               );
             },

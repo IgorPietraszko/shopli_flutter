@@ -31,7 +31,6 @@ class ShoppingListDialog extends AlertDialog {
                   hintText: "Shopping List Name",
                 ),
                 controller: _textController,
-                onChanged: (value) => _shoppingListName = value,
               ),        
             ],
           ),
